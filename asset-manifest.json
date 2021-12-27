@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/PplFinderApp/static/js/main.b70f9ade.js",
+    "index.html": "/PplFinderApp/index.html",
+    "main.b70f9ade.js.map": "/PplFinderApp/static/js/main.b70f9ade.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b70f9ade.js"
+  ]
+}
