@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import * as S from "./style";
 
-const UserList = ({ users, isLoading, handleScroll }) => {
+const UserList = ({ users, isLoading, fetchUsers }) => {
   const [hoveredUserId, setHoveredUserId] = useState();
   const [checkedCountries, setCheckedCountries] = useState([]);
   const [filteredUsers, setFilteredUseres] = useState([]);
@@ -53,7 +53,6 @@ const UserList = ({ users, isLoading, handleScroll }) => {
   };
 
   const handleFavButton = (user) => {
-    console.log(user);
     if (favorites.includes(user)) {
       setFavorites(favorites.filter((favorite) => favorite !== user));
     } else {
@@ -61,8 +60,12 @@ const UserList = ({ users, isLoading, handleScroll }) => {
     }
   };
 
-  const handleS = (event) => {
-    handleScroll(event);
+  const handleScroll = (event) => {
+    const clientHeight = event.target.clientHeight;
+    const scrollHeight = event.target.scrollHeight;
+    const currentHeight = Math.ceil(
+      event.target.scrollTop + clientHeight);
+    if(currentHeight + 1 >= scrollHeight) fetchUsers();
   };
 
   return (
@@ -99,7 +102,7 @@ const UserList = ({ users, isLoading, handleScroll }) => {
           label="Israel"
         />
       </S.Filters>
-      <S.List onScroll={handleS}>
+      <S.List onScroll={handleScroll}>
         {filteredUsers.map((user, index) => {
           return (
             <S.User

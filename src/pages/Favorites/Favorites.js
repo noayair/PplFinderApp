@@ -15,7 +15,6 @@ const Favorites = () => {
     return initialValue || []});
   
     useEffect(() => {
-      console.log('effect in favorites');
       console.log(favorites);
     }, [favorites, localStorage]);
 
